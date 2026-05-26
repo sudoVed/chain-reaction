@@ -46,7 +46,7 @@ The goal is to eliminate all other players by capturing every cell on the board.
 - **Cyber UI** — neon colour scheme with dynamic window resizing and sparkle background
 - **BGM playlist** — two tracks alternating in a loop, plus per-explosion sound effects
 
-For a deep dive into the AI and training pipeline, see [README2.md](README2.md).
+For a deep dive into the AI and training pipeline, see [READMERL.md](rl/READMERL.md).
 
 ---
 
@@ -115,7 +115,7 @@ ChainReaction/
 │   ├── icon.png         Window icon
 │   └── icon.ico         Executable icon
 │
-├── rl/                  Reinforcement learning pipeline (see README2.md)
+├── rl/                  Reinforcement learning pipeline (see rl/READMERL.md)
 │   ├── env.py           Gym-style environment wrapper
 │   ├── model.py         Spatial CNN Q-network
 │   ├── agent.py         DQNAgent — replay buffer, epsilon-greedy, train step
@@ -156,12 +156,12 @@ The project is split into three clean layers:
 
 ```mermaid
 flowchart TD
-    A([main]) --> B[pygame.init\nset_mode]
+    A([main]) --> B[pygame.init<br/>set_mode]
     B --> C[_start_bgm]
     C --> D[run_setup]
     D --> E[SetupScreen.__init__]
     E --> F{event loop}
-    F -->|hover| G[_hit_test\nupdate hover]
+    F -->|hover| G[_hit_test<br/>update hover]
     G --> F
     F -->|click option| H[update players / grid]
     H --> F
@@ -178,15 +178,15 @@ flowchart TD
     K[run_game] --> L[Game.__init__]
     L --> N[GameRenderer.__init__]
     N --> O{main loop}
-    O -->|click cell| S[game.can_place\ngame.place]
-    S -->|overloaded| T[state = animating\nqueue cell]
-    S -->|normal| U[_end_turn\nnext player]
+    O -->|click cell| S[game.can_place<br/>game.place]
+    S -->|overloaded| T[state = animating<br/>queue cell]
+    S -->|normal| U[_end_turn<br/>next player]
     T --> O
     U --> O
-    O -->|undo| R[game.undo\nreset anim state]
+    O -->|undo| R[game.undo<br/>reset anim state]
     R --> O
-    O -->|update| V[spin_angle++\n_tick_sparkles\nphase_timer += dt]
-    V --> W[wave animation\nstate machine]
+    O -->|update| V[spin_angle++<br/>_tick_sparkles<br/>phase_timer += dt]
+    V --> W[wave animation<br/>state machine]
     W --> O
 ```
 
@@ -196,11 +196,11 @@ flowchart TD
 flowchart TD
     V[update] --> W{_phase}
     W -->|idle| X[game.get_wave]
-    X --> Y[_begin_burst\nsnapshot owners\n_play_pop]
+    X --> Y[_begin_burst<br/>snapshot owners<br/>_play_pop]
     Y -->|phase = burst| W
-    W -->|burst\nBURST_DURATION_MS| Z[_begin_flying\nbuild FlyingOrb list]
+    W -->|burst<br/>BURST_DURATION_MS| Z[_begin_flying<br/>build FlyingOrb list]
     Z -->|phase = flying| W
-    W -->|flying\nFLY_DURATION_MS| AA[_finish_wave\ngame.apply_wave]
+    W -->|flying<br/>FLY_DURATION_MS| AA[_finish_wave<br/>game.apply_wave]
     AA -->|phase = idle| W
 ```
 
@@ -208,8 +208,8 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    AA[apply_wave] --> AB[Step 1: scatter\ncommitted cells fire cm orbs]
-    AB --> AC[Step 2: apply orbs\ncapture + reset count + queue]
+    AA[apply_wave] --> AB[Step 1: scatter<br/>committed cells fire cm orbs]
+    AB --> AC[Step 2: apply orbs<br/>capture + reset count + queue]
     AC --> AD[_check_eliminations]
     AD --> AE{_check_winner}
     AE -->|one alive| AF[state = won]
@@ -221,16 +221,16 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    O[main loop] --> AI[screen.fill\n_draw_sparkles]
-    AI --> AJ[_draw_ui_bar\nplayer name · UNDO · MENU · scores]
-    AJ --> AK[_draw_grid\nlines + corner tint + hover]
-    AK --> AL[_draw_cells\norb positions + spin]
-    AL --> AM[_draw_flying_orbs\nsmoothstep interpolation]
+    O[main loop] --> AI[screen.fill<br/>_draw_sparkles]
+    AI --> AJ[_draw_ui_bar<br/>player name · UNDO · MENU · scores]
+    AJ --> AK[_draw_grid<br/>lines + corner tint + hover]
+    AK --> AL[_draw_cells<br/>orb positions + spin]
+    AL --> AM[_draw_flying_orbs<br/>smoothstep interpolation]
     AM --> AN{burst phase?}
     AN -->|yes| AO[_draw_bursts]
     AO --> AP{won?}
     AN -->|no| AP
-    AP -->|yes| AQ[_draw_win_screen\noverlay + panel + scanlines]
+    AP -->|yes| AQ[_draw_win_screen<br/>overlay + panel + scanlines]
     AP -->|no| AR[display.flip]
     AQ --> AR
 ```
@@ -268,7 +268,7 @@ Three difficulty levels are available from the setup screen:
 
 The Smart agent uses a fully-convolutional Q-network trained over ~10,000 episodes across a four-stage curriculum, achieving 95% win rate vs random, 81.5% vs defensive, and 57% vs greedy. It applies a self-simulation risk filter: before committing to any move, it asks *"what would I do in the opponent's position after this move?"* and avoids trades where the answer is damaging.
 
-For the full technical writeup — network architecture, state encoding, reward shaping, curriculum design, and arena results — see [README2.md](README2.md).
+For the full technical writeup — network architecture, state encoding, reward shaping, curriculum design, and arena results — see [READMERL.md](rl/READMERL.md).
 
 ---
 

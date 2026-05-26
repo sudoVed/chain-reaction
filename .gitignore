@@ -19,9 +19,11 @@ dist/
 debug.txt
 *.log
 
-# Checkpoints — keep final.pt and ep05500 only
+# Checkpoints — keep final.pt, logs.txt, and ep05500 only
 rl/checkpoints/ep*.pt
+rl/checkpoint5500/ep*.pt
 !rl/checkpoint5500/ep05500.pt
+rl/final/ep*.pt
 
 # Model cache
 *.egg-info/

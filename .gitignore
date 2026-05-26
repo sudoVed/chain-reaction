@@ -28,6 +28,9 @@ rl/final/ep*.pt
 # Model cache
 *.egg-info/
 
+# Compiled executable (platform-specific, won't run on other PCs)
+ChainReaction.exe
+
 # OS
 .DS_Store
 Thumbs.db

@@ -63,12 +63,32 @@ torch                            pip install torch   (only needed for Smart AI)
 
 ## Running the Game
 
+**Option 1 — Terminal (any platform, shows errors if something goes wrong)**
 ```bash
 cd ChainReaction
 python main.py
 ```
 
-Or double-click `ChainReaction.pyw` (no console window) if Python is installed and `.pyw` files are associated with `pythonw.exe`.
+**Option 2 — Double-click, no console window (Windows)**
+
+Double-click `ChainReaction.pyw`. Windows automatically runs it with `pythonw.exe` if Python is installed. No terminal appears.
+
+If double-clicking does nothing: right-click → *Open with* → Python.
+
+**Option 3 — debug_run.bat (Windows, recommended for troubleshooting)**
+
+Double-click `debug_run.bat`. Runs `python main.py` in a console window that stays open after exit, so any error messages are visible. Use this if the game silently fails to launch.
+
+**Option 4 — Build your own .exe (Windows)**
+
+If you want a double-clickable `.exe` that doesn't require a terminal:
+```bash
+pip install pyinstaller
+build_exe.bat
+```
+This produces `ChainReaction.exe` in the same folder. The exe is a thin stub — it just finds `pythonw.exe` on your PATH and runs `main.py`. Re-run `build_exe.bat` only if `launcher_stub.py` changes; editing any other `.py` file takes effect immediately without a rebuild.
+
+> **Note:** `ChainReaction.exe` is not included in this repo as it is platform-specific and will not run on another machine. Build it yourself using the steps above.
 
 ---
 

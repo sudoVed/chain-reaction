@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# PyInstaller build artifacts
+build_tmp/
+*.spec
+dist/
+
+# Debug / logs
+debug.txt
+*.log
+
+# Checkpoints — keep final.pt and ep05500 only
+rl/checkpoints/ep*.pt
+!rl/checkpoint5500/ep05500.pt
+
+# Model cache
+*.egg-info/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -54,10 +54,20 @@ For a deep dive into the AI and training pipeline, see [READMERL.md](rl/READMERL
 
 ```
 Python 3.10+
-pygame        (Python ≤ 3.13)   pip install pygame
-pygame-ce     (Python 3.14+)    pip install pygame-ce
-torch                            pip install torch   (only needed for Smart AI)
+pygame        (Python ≤ 3.13)
+pygame-ce     (Python 3.14+)
+torch
+numpy
 ```
+
+**Windows — easiest way:** double-click `install.bat`. It detects your Python version, picks the right pygame variant, and installs everything automatically.
+
+**Manual install:**
+```bash
+pip install -r requirements.txt
+```
+
+> If you are on Python 3.14+, also run `pip install pygame-ce` after the above (replaces pygame).
 
 ---
 

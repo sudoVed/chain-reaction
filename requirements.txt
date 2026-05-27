@@ -1,0 +1,12 @@
+# Chain Reaction - Requirements
+#
+# Install with:
+#   pip install -r requirements.txt
+#
+# Note: if you are on Python 3.14+, replace pygame with pygame-ce:
+#   pip install pygame-ce
+#   pip install torch numpy
+
+pygame>=2.0.0
+torch>=2.0.0
+numpy>=1.24.0

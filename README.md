@@ -31,6 +31,7 @@ Chain Reaction is a turn-based strategy game played on a grid. Players alternate
 
 The goal is to eliminate all other players by capturing every cell on the board.
 
+[[Watch the demo](https://github.com/sudoVed/chain-reaction/releases/tag/video-v1.0)]
 ---
 
 ## Features
